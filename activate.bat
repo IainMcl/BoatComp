@@ -1,0 +1,1 @@
+boatcomp/Scripts/activate.bat
