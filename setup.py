@@ -1,5 +1,5 @@
-# python setup.py bdist_wheel
-# python setup.py sdist
+# python setup.py build
+# python setup.py install
 # pip install -e .
 # pip install -e .[dev]
 
@@ -7,7 +7,7 @@ from setuptools import setup
 
 
 class Person():
-    def __init__(self, fname: str, sname: str, email: str, role):
+    def __init__(self, fname: str, sname: str, email: str, role: list[str]):
         self.name = f"{fname} {sname}"
         self.email = email
         self.role = role
@@ -35,9 +35,7 @@ setup(
     license="Apache",
     classifiers=[
         "Programming Language :: Python 3",
-        "Programming Language :: Python 3.8",
-        "Programming Language :: Python 3.7",
-        "Programming Language :: Python 3.6",
+        "Programming Language :: Python 3.9",
     ],
     long_description=long_description,
     long_description_content_type="text/markdown",
