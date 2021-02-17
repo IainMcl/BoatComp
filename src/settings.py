@@ -12,9 +12,6 @@ DB = config("DB")
 
 
 def check_setup():
-    """
-    Check if setup has been run. 
-      Database,
-      init
+    """Checks setup config.
     """
     pass
