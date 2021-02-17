@@ -1,10 +1,12 @@
 alabaster==0.7.12
+aniso8601==7.0.0
 appdirs==1.4.4
+ariadne==0.12.0
 atomicwrites==1.4.0
 attrs==20.3.0
 autopep8==1.5.5
 Babel==2.9.0
--e git+https://github.com/IainMcl/BoatComp.git@52e0d1574f0fc156503ea0acf794236126928bbb#egg=boatcomp
+-e git+https://github.com/IainMcl/BoatComp.git@e767aa940d6c94cda4e67f1dc298579a7ae6d99b#egg=boatcomp
 certifi==2020.12.5
 chardet==3.0.4
 click==7.1.2
@@ -17,6 +19,9 @@ docutils==0.16
 fett==0.3.2
 filelock==3.0.12
 Flask==1.1.2
+Flask-GraphQL==2.0.1
+graphql-core==3.0.5
+graphql-server-core==1.2.0
 idna==2.10
 imagesize==1.2.0
 iniconfig==1.1.1
@@ -27,6 +32,7 @@ networkx==2.5
 packaging==20.9
 pathtools==0.1.2
 pluggy==0.13.1
+promise==2.3
 py==1.10.0
 pycodestyle==2.6.0
 Pygments==2.8.0
@@ -39,6 +45,7 @@ pytz==2021.1
 PyYAML==5.3.1
 requests==2.24.0
 rstcheck==3.3.1
+Rx==1.6.1
 six==1.15.0
 snooty-lextudio==1.8.7.dev0
 snowballstemmer==2.1.0
@@ -50,6 +57,7 @@ sphinxcontrib-htmlhelp==1.0.3
 sphinxcontrib-jsmath==1.0.1
 sphinxcontrib-qthelp==1.0.3
 sphinxcontrib-serializinghtml==1.1.4
+starlette==0.13.8
 toml==0.10.2
 tox==3.22.0
 typing-extensions==3.7.4.3

@@ -40,12 +40,17 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     install_requires=[
-        "python-decouple>=3.4"
+        "python-decouple>=3.4",
+        "Flask>=1.0.0",
+        "Flask-GraphQL>=2.0.0",
+        "ariadne>=0.12.0",
     ],
     extras_require={
         "dev": [
             "pytest>=6.2",
-            "tox",
+            "tox>=3.22",
+            "Sphinx>=3.5.1",
+            "sphinx-rtd-theme>=0.5.0"
         ],
     },
     keywords=[

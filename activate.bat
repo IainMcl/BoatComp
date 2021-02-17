@@ -1,1 +1,1 @@
-boatcomp/Scripts/activate.bat
+ENV/Scripts/activate.bat
