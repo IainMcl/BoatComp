@@ -1,6 +1,6 @@
 # Graphql API
 
-Graphql api is built using [Graphene](https://graphene-python.org/) and run on
+Graphql api is built using [Ariadne](https://ariadnegraphql.org/) and run on
 a [Flask](https://flask.palletsprojects.com/en/1.1.x/) server.
 
 ## Setting up the server
@@ -25,3 +25,5 @@ This will start development the server on `http://localhost:5000` by default.
 
 With using a graphql api the only open end point for main interactions is
 `/graphql`.
+
+Following the example given on [How to create a react flask graphql project](https://blog.sethcorker.com/how-to-create-a-react-flask-graphql-project
