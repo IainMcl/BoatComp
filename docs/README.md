@@ -1,10 +1,15 @@
 # Documentation
 
-Documentation is made using [ Sphinx ](https://www.sphinx-doc.org/en/master/), with the aim to be published to [ Read the Docs ](https://readthedocs.org/) when production ready.
+Documentation is made using [ Sphinx ](https://www.sphinx-doc.org/en/master/),
+with the aim to be published to [ Read the Docs ](https://readthedocs.org/) when production ready.
+
+**Note** `build/` (the final version of the documentation) is not being tracked
+by git.
 
 ## Producing documentation
 
-Documentation can be added to by editing [ source/index.rst ](source/index.rst) for the landing page. Other `.rst` files can be added in the `source/` dir.
+Documentation can be added to by editing [ source/index.rst ](source/index.rst)
+for the landing page. Other `.rst` files can be added in the `source/` dir.
 
 ## Updating existing docstring documentation
 
