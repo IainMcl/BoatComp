@@ -4,9 +4,10 @@ atomicwrites==1.4.0
 attrs==20.3.0
 autopep8==1.5.5
 Babel==2.9.0
--e git+https://github.com/IainMcl/BoatComp.git@ef5e8b0c66229e5ac06fc5188a377fe0185ac839#egg=boatcomp
+-e git+https://github.com/IainMcl/BoatComp.git@52e0d1574f0fc156503ea0acf794236126928bbb#egg=boatcomp
 certifi==2020.12.5
 chardet==3.0.4
+click==7.1.2
 colorama==0.4.4
 decorator==4.4.2
 distlib==0.3.1
@@ -15,9 +16,11 @@ docopt==0.6.2
 docutils==0.16
 fett==0.3.2
 filelock==3.0.12
+Flask==1.1.2
 idna==2.10
 imagesize==1.2.0
 iniconfig==1.1.1
+itsdangerous==1.1.0
 Jinja2==2.11.3
 MarkupSafe==1.1.1
 networkx==2.5
@@ -53,3 +56,4 @@ typing-extensions==3.7.4.3
 urllib3==1.25.11
 virtualenv==20.4.2
 watchdog==0.10.4
+Werkzeug==1.0.1
