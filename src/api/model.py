@@ -2,6 +2,11 @@ from ariadne import QueryType, MutationType
 
 from uuid import uuid4
 
+from models.Mark import Mark
+
+m = Mark(position="here", type="start")
+print(m.position)
+
 
 class Coffee:
     def __init__(self, size, name, coffee_type):
