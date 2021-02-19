@@ -28,8 +28,13 @@ setup(
     maintainer=aut.name,
     maintainer_email=aut.email,
     url="https://github.com/IainMcl/BoatComp",
+    packages=[
+        "api",
+        "database",
+        "models",
+    ],
     py_modules=[
-        "db_setup",
+        "settings",
     ],
     package_dir={"": "src"},
     license="Apache",

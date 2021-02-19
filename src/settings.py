@@ -1,14 +1,14 @@
 import os
 from decouple import config
 
-ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
-CONFIG_PATH = os.path.join(ROOT_DIR, 'configuration.conf')
+ROOT_DIR: str = os.path.dirname(os.path.abspath(__file__))
+CONFIG_PATH: str = os.path.join(ROOT_DIR, 'configuration.conf')
 
-DB_PATH = os.path.join(ROOT_DIR, config("DB"))
+DB_PATH: str = os.path.join(ROOT_DIR, config("DB"))
 
 # Environment variables
-DEBUG = True
-DB = config("DB")
+DEBUG: bool = True
+DB: str = config("DB")
 
 
 def check_setup():
