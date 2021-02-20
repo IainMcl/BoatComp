@@ -70,7 +70,7 @@ development.
 #. Fork the *boatcomp* repo on GitHub.
 #. Clone your fork locally: 
 
-   .. code-block:: git
+   .. code-block:: bash
    
      $ git clone git@github.com:<your-user-name>/BoatComp.git
 
@@ -84,7 +84,7 @@ development.
 
 #. Create a branch for local development:
    
-   .. code-block:: git
+   .. code-block:: bash
 
      $ git checkout -b <your-branch-name>
 
