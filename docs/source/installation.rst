@@ -34,7 +34,7 @@ Dependencies
 
 All of the following are for base dependencies. A full list of installed 
 dependencies i.e. the result of :code:`$ pip freeze` can be found in 
-`requirements-all.txt <../../requirements-all.txt>`_.
+`requirements-all.txt <https://github.com/IainMcl/BoatComp/blob/main/requirements-all.txt>`_.
 
 Usage packages
 ^^^^^^^^^^^^^^
