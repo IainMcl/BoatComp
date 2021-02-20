@@ -21,10 +21,10 @@ class Table():
         Create a table within a database 'db'.
 
         :example: marks = Table("marks", [
-                                          "posx", "REAL",
-                                          "posy", "REAL",
-                                          "type", "TEXT"
-                                          ])
+                  ("posx", "REAL"),
+                  ("posy", "REAL"),
+                  ("type", "TEXT")
+                  ])
 
         :param table_name: Name of table in database.
         :type table_name: str
@@ -102,11 +102,11 @@ class Table():
         Get a list of all table fields and their sqlite3 data types.
 
 
-        :example: 
-                .. code-block:: python
-                    > fields = get_fields()
-                    > print(fields)
-                    >>> [("name1", "INTEGER"), ("name2", "REAL"), ...]
+        :example:
+            > fields = get_fields()
+            > print(fields)
+            >>> [("name1", "INTEGER"), ("name2", "REAL"), ...]
+
         :return: List of all values and their types.
         :rtype: list[tuple[str, str]]
         """
