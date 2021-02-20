@@ -19,6 +19,15 @@ aut = Person("Iain", "McLaughaln",
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
+with open("requirements.txt") as f:
+    required = f.read().splitlines()
+
+with open("requirements-dev.txt") as f:
+    required_dev = f.read().splitlines()
+
+with open("requirements-docs.txt") as f:
+    required_doc = f.read().splitlines()
+
 setup(
     name="boatcomp",
     version="0.0.1",
@@ -44,19 +53,10 @@ setup(
     ],
     long_description=long_description,
     long_description_content_type="text/markdown",
-    install_requires=[
-        "python-decouple>=3.4",
-        "Flask>=1.0.0",
-        "Flask-GraphQL>=2.0.0",
-        "ariadne>=0.12.0",
-    ],
+    install_requires=required,
     extras_require={
-        "dev": [
-            "pytest>=6.2",
-            "tox>=3.22",
-            "Sphinx>=3.5.1",
-            "sphinx-rtd-theme>=0.5.0"
-        ],
+        "dev": required_dev,
+        "doc": required_doc,
     },
     keywords=[
         "python",

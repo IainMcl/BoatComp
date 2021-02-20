@@ -38,11 +38,10 @@ Aims
 
 .. toctree::
    :maxdepth: 2
-   :caption: User guid
+   :caption: User guide
 
    installation
-   ..
-      contributing
+   contributing
 
 .. toctree::
    :maxdepth: 2

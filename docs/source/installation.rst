@@ -21,14 +21,20 @@ then install with pip::
 
   $ pip install .
 
-or::
+or for development::
 
   $ pip install -e .[dev]
 
-for development.
+or for documentation development::
+
+  $ pip install -e .[doc]
 
 Dependencies
 ------------
+
+All of the following are for base dependencies. A full list of installed 
+dependencies i.e. the result of :code:`$ pip freeze` can be found in 
+`requirements-all.txt <../../requirements-all.txt>`_.
 
 Usage packages
 ^^^^^^^^^^^^^^
@@ -38,3 +44,12 @@ Usage packages
 
 Development packages
 ^^^^^^^^^^^^^^^^^^^^
+
+.. include:: ../../requirements-dev.txt
+  :literal:
+
+Documentation packages
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. include:: ../../requirements-docs.txt
+  :literal:
