@@ -4,15 +4,13 @@ database package
 Submodules
 ----------
 
-database.db\_setup module
--------------------------
+database.Table module
+---------------------
 
-.. automodule:: database.db_setup
+.. automodule:: database.Table
    :members:
    :undoc-members:
    :show-inheritance:
-   :private-members:
-   :special-members:
 
 Module contents
 ---------------

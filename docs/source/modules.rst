@@ -6,6 +6,5 @@ lib
 
    api
    database
-   db_setup
    models
    settings
