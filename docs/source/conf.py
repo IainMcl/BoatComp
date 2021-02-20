@@ -60,4 +60,5 @@ html_theme_options = {
     'display_version': False,
 }
 
+# Ensure that __ class methods are also included.
 autoclass_content = 'both'

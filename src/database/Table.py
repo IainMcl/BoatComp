@@ -2,7 +2,9 @@ import sqlite3
 import sys
 from decouple import config
 from settings import DB_PATH
-from typing import TypeVar, Type
+from typing import TypeVar, Type, Union
+
+list_or_single = Union[tuple[str, ...], list[tuple[str, ...]]]
 
 
 class Table():
@@ -97,3 +99,24 @@ class Table():
                     {string}
                 )
             """)
+
+    def insert_many(self, values_list: list[tuple[str, ...]]) -> None:
+        with sqlite3.connect(self.db) as conn:
+            cur = conn.cursor()
+            cur.executemany(f"""
+                INSERT INTO {self._table_name} VALUES (
+                    {("?, "*len(self._fields))[:-2]}
+                )
+            """, values_list)
+
+    def _check_values(self, values: list_or_single) -> bool:
+        # Length check
+        msg = "Incorrect length of values passed."
+        if type(values) == list:
+            length: int = len(self._fields)
+            for val in values:
+                assert(len(val) == length, msg)
+        elif type(values) == tuple:
+            assert(len(values) == length, msg)
+        else:
+            raise ValueError("Incorrect type to be added to table.")
