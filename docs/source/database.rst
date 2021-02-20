@@ -11,6 +11,8 @@ database.db\_setup module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
+   :special-members:
 
 Module contents
 ---------------

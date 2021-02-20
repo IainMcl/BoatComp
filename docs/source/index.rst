@@ -51,6 +51,12 @@ Aims
 
 .. toctree::
    :maxdepth: 2
+   :caption: Modules
+
+   modules
+
+.. toctree::
+   :maxdepth: 2
    :caption: Models
 
    models
