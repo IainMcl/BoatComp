@@ -11,7 +11,9 @@ class Table():
     """
     Sqlite3 database table.
 
-    Used as a base class for database entries.
+    Used as a base class for database entries with functionality to interact 
+    with the database in common ways, so as to reduce the chance of invalid SQL
+    errors.
     """
 
     def __init__(self, table_name: str, fields: list[tuple[str, str]], db: str = DB_PATH) -> None:
@@ -81,7 +83,34 @@ class Table():
         return [x[0] for x in self._fields]
 
     def get_field_types(self) -> list[str]:
+        """
+        Get a list of database field types.
+        These can be one of the 5 sqlite3 data types:
+        * REAL
+        * TEXT
+        * INTEGER
+        * NULL
+        * BLOB  
+
+        :return: List of data types in the order they appear in the table.
+        :rtype: list[str]
+        """
         return [x[1] for x in self._fields]
+
+    def get_fields(self) -> list[tuple[str, str]]:
+        """
+        Get a list of all table fields and their sqlite3 data types.
+
+
+        :example: 
+                .. code-block:: python
+                    > fields = get_fields()
+                    > print(fields)
+                    >>> [("name1", "INTEGER"), ("name2", "REAL"), ...]
+        :return: List of all values and their types.
+        :rtype: list[tuple[str, str]]
+        """
+        return self._fields
 
     def insert_one(self, values: tuple[str, ...]) -> None:
         """
@@ -92,16 +121,16 @@ class Table():
         """
 
         string: str = ", ".join(map(str, values))
-        with sqlite3.connect(self.db) as conn:
+        with sqlite3.connect(self._db) as conn:
             cur = conn.cursor()
             cur.execute(f"""
-                INSERT INTO {self.table_name} VALUES (
+                INSERT INTO {self._table_name} VALUES (
                     {string}
                 )
             """)
 
     def insert_many(self, values_list: list[tuple[str, ...]]) -> None:
-        with sqlite3.connect(self.db) as conn:
+        with sqlite3.connect(self._db) as conn:
             cur = conn.cursor()
             cur.executemany(f"""
                 INSERT INTO {self._table_name} VALUES (
@@ -111,12 +140,14 @@ class Table():
 
     def _check_values(self, values: list_or_single) -> bool:
         # Length check
-        msg = "Incorrect length of values passed."
         if type(values) == list:
             length: int = len(self._fields)
             for val in values:
-                assert(len(val) == length, msg)
+                if len(val) != length:
+                    return False
         elif type(values) == tuple:
-            assert(len(values) == length, msg)
+            if len(values) != length:
+                return False
         else:
             raise ValueError("Incorrect type to be added to table.")
+        return True
