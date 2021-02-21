@@ -14,9 +14,6 @@ import os
 import sys
 sys.path.insert(0, os.path.abspath('../../src/'))
 
-for x in os.walk('../../src'):
-    sys.path.insert(0, x[0])
-
 # -- Project information -----------------------------------------------------
 
 project = 'boatcomp'
