@@ -2,7 +2,7 @@ import sqlite3
 import sys
 from decouple import config
 from settings import DB_PATH
-from typing import TypeVar, Type, Union
+from typing import TypeVar, Type, Union, Any
 
 list_or_single = Union[tuple[str, ...], list[tuple[str, ...]]]
 
@@ -73,14 +73,23 @@ class Table():
             """)
             conn.commit()
 
-    def get_field_names(self) -> list[str]:
+    def get_field_names(self, as_string: bool = False) -> Union[list[str], str]:
         """
         Get a list of the field names available within the table.
 
-        :return: List of names that can be selected from the database table.
-        :rtype: list[str]
+        :param as_string: If the return is to be a python list or a comma 
+            separated string. True: string, False list, defaults to False.
+        :type as_string: bool
+        :return: List of names that can be selected from the database table. Or
+            if as_string then as string comma separated list.
+            'arg1, arg2, arg3'
+        :rtype: Union[list[str], str]
         """
-        return [x[0] for x in self._fields]
+        names = [x[0] for x in self._fields]
+        if not as_string:
+            return names
+        else:
+            return ", ".join(names)
 
     def get_field_types(self) -> list[str]:
         """
@@ -112,33 +121,65 @@ class Table():
         """
         return self._fields
 
-    def insert_one(self, values: tuple[str, ...]) -> None:
+    def insert_one(self, values: tuple[Any, ...]) -> None:
         """
         Insert values into a new row in the database table.
 
         :param values: Tuple of values to be added to the row of the database.
-        :type values: tuple[str, ...]
+        :type values: tuple[Any, ...]
         """
 
+        if not self._check_values(values):
+            raise ValueError(f"Values are not of the correct format. {values}")
+
         string: str = ", ".join(map(str, values))
+        names = self.get_field_names(as_string=True)
         with sqlite3.connect(self._db) as conn:
             cur = conn.cursor()
             cur.execute(f"""
-                INSERT INTO {self._table_name} VALUES (
+                INSERT INTO {self._table_name} ({names}) VALUES (
                     {string}
                 )
             """)
 
-    def insert_many(self, values_list: list[tuple[str, ...]]) -> None:
+    def insert_many(self, values_list: list[tuple[Any, ...]]) -> None:
+        """
+        Insert a list of tuples into the database table.
+
+        :param values_list: List of tuples containing a new row of data to be 
+            input.
+        :type values_list: list[tuple[Any, ...]]
+        :raises ValueError: If the values are of the wrong length or type to be 
+            input.
+        """
+        if not self._check_values(values_list):
+            raise ValueError(
+                f"Values are not of the correct format. {values_list}")
+        names = self.get_field_names(as_string=True)
         with sqlite3.connect(self._db) as conn:
             cur = conn.cursor()
             cur.executemany(f"""
-                INSERT INTO {self._table_name} VALUES (
+                INSERT INTO {self._table_name} ({names}) VALUES (
                     {("?, "*len(self._fields))[:-2]}
                 )
             """, values_list)
 
     def _check_values(self, values: list_or_single) -> bool:
+        """
+        Check the values to be inserted into the database are of the correct 
+            length and type to be added to the table.
+
+        Current checks:
+            - Check the length of each tuple matches the number of cols in table.
+            - Check each data type matches the table expected input type.
+
+        :param values: List of tuple containing entries, or single tuple
+            containing data.
+        :type values: list_or_single
+        :raises ValueError: If not list or tuple.
+        :return: True if checks pass, else False.
+        :rtype: bool
+        """
         # Length check
         if type(values) == list:
             length: int = len(self._fields)
@@ -150,4 +191,32 @@ class Table():
                 return False
         else:
             raise ValueError("Incorrect type to be added to table.")
+
+        types: list[str] = self.get_field_types()
+
+        # If tuple, make a list so indexing works with checks.
+        if type(values) == tuple:
+            values = [values]
+
+        for row in values:
+            for i in range(types):
+                if type == "INTEGER" and type(row[i]) != int:
+                    return False
+                if type == "NULL" and row[i]:
+                    # If not null or none or False
+                    return False
+                if type == "TEXT" and type(row[i]) != str:
+                    return False
+                if type == "REAL" and (type(row[i]) != int or type(row[i]) != float):
+                    return False
+
         return True
+
+    def select_all(self) -> list[tuple[Any]]:
+        with sqlite3.connect(self._db) as conn:
+            cur = conn.cursor()
+            cur.execute(f"""
+            SELECT * from {self._table_name}
+            """)
+            data = cur.fetchall()
+        return data

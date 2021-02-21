@@ -16,7 +16,7 @@ class Person():
 aut = Person("Iain", "McLaughaln",
              "SailingExercises@gmail.com", ["aut", "men"])
 
-with open("README.md", "r") as fh:
+with open("README.rst", "r") as fh:
     long_description = fh.read()
 
 with open("requirements.txt") as f:
