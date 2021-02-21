@@ -1,3 +1,4 @@
+========
 Boatcomp
 ========
 
@@ -38,9 +39,8 @@ Aims
    features. Python 3.9 is not currently supported by readthedocs for 
    docstring documentation, but will hopefully be updated soon.
 
-============
 Installation
-============
+------------
 
 Install package with pip
 ------------------------
@@ -75,27 +75,6 @@ Dependencies
 All of the following are for base dependencies. A full list of installed 
 dependencies i.e. the result of :code:`$ pip freeze` can be found in 
 `requirements-all.txt <https://github.com/IainMcl/BoatComp/blob/main/requirements-all.txt>`_.
-
-Usage packages
-^^^^^^^^^^^^^^
-
-.. include:: ../../requirements.txt
-  :literal:
-
-Development packages
-^^^^^^^^^^^^^^^^^^^^
-
-.. include:: ../../requirements-dev.txt
-  :literal:
-
-Documentation packages
-^^^^^^^^^^^^^^^^^^^^^^
-
-.. include:: ../../requirements-docs.txt
-  :literal:
-
-
-
 
 .. |docs| image:: https://readthedocs.org/projects/docs/badge/?version=latest
     :alt: Documentation Status
