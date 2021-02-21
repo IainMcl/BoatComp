@@ -34,7 +34,7 @@ Aims
 
 - A web view front end to display boat information and useful data.
 
-:warning: **note**
+ **note**
    Full documentation is not available at the moment due to using python 3.9 
    features. Python 3.9 is not currently supported by readthedocs for 
    docstring documentation, but will hopefully be updated soon.
