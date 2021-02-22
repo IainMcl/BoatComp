@@ -43,6 +43,7 @@ setup(
         "models",
     ],
     py_modules=[
+        "__init__",
         "settings",
     ],
     package_dir={"": "src"},

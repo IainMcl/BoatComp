@@ -45,6 +45,9 @@ class Table():
         :raises ValueError: If input fields are not valid sqlite3 data types.
         """
         self._table_name = table_name
+        for field in fields:
+            field[1] = field[1].upper()
+            print(field[1])
         self._fields = fields
         if not fields:
             # Catch empty fields before trying to input to db
@@ -65,7 +68,7 @@ class Table():
             for field in fields:
                 if field[1].upper() not in types:
                     raise ValueError(f"""
-                        Data type {field[1]} is not a sqlite3 data type.
+                        Data type {field[1].upper()} is not a sqlite3 data type.
                     """)
                 string += f"{field[0]} {field[1]}, "
             # remove comma from the last
@@ -145,6 +148,7 @@ class Table():
                     {string}
                 )
             """)
+        cur.commit()
 
     def insert_many(self, values_list: list[tuple[Any, ...]]) -> None:
         """
@@ -167,6 +171,7 @@ class Table():
                     {("?, "*len(self._fields))[:-2]}
                 )
             """, values_list)
+        cur.commit()
 
     def _check_values(self, values: list_or_single) -> bool:
         """
@@ -236,3 +241,12 @@ class Table():
                 cur.execute(query)
                 data = cur.fetchall()
         return data
+
+    # def update_one(self, id: int, values: tuple[Any]):
+        # with sqlite3.connect(self._db) as conn:
+        #cur = conn.cursor()
+        # cur.execute(f"""
+        # UPDATE {self._table_name}
+        # SET {self.get_field_names(as_string=True)}
+        # WHERE
+        # """)
