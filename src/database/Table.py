@@ -1,6 +1,7 @@
 import sqlite3
 import sys
 from decouple import config
+import pandas as pd
 from settings import DB_PATH
 from typing import TypeVar, Type, Union, Any
 
@@ -45,6 +46,9 @@ class Table():
         """
         self._table_name = table_name
         self._fields = fields
+        if not fields:
+            # Catch empty fields before trying to input to db
+            raise ValueError(f"Fields can not be empty. Passed {fields}")
         self._db = db
 
         types: list[str] = [
@@ -212,11 +216,23 @@ class Table():
 
         return True
 
-    def select_all(self) -> list[tuple[Any]]:
+    def select_all(self, as_df: bool = True) -> Union[pd.DataFrame, list[tuple[Any]]]:
+        """
+        Select all data from the table as either a list of tuples or a pandas df.
+
+        :param as_df: True if return type should be pd.DataFrame, defaults to True
+        :type as_df: bool, optional
+        :return: All data as pd.DataFrame if as_df == True else list[tuple[Any]]
+        :rtype: Union[pd.DataFrame, list[tuple[Any]]]
+        """
+        query = f"""
+            SELECT * FROM {self._table_name}
+            """
         with sqlite3.connect(self._db) as conn:
-            cur = conn.cursor()
-            cur.execute(f"""
-            SELECT * from {self._table_name}
-            """)
-            data = cur.fetchall()
+            if as_df:
+                data = pd.read_sql_query(query, conn)
+            else:
+                cur = conn.cursor()
+                cur.execute(query)
+                data = cur.fetchall()
         return data

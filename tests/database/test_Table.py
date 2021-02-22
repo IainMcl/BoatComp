@@ -45,6 +45,19 @@ def test_instantiation(create_table) -> None:
 
 
 def test_get_field_names(create_table) -> None:
+    """
+    Test field names can be retrieves as input in constructor.
+
+    :param create_table: pytest.fixtrue of an instantiated Table class.
+        t: Type[Table] = Table("test_table", fields=[
+            ("arg1", "INTEGER"),
+            ("arg2", "REAL"),
+            ("arg3", "NULL"),
+            ("arg4", "TEXT"),
+            ("arg5", "BLOB")
+        ], db="./test.db")
+    :type create_table: pytest.fixture
+    """
     fields: list[str] = create_table.get_field_names()
     assert "arg1" in fields
     assert "arg2" in fields
@@ -55,6 +68,24 @@ def test_get_field_names(create_table) -> None:
 
 
 def test_get_field_names_as_string(create_table) -> None:
+    """
+    Note: This is giving an error of unexpected key word argument 'as_string'
+        No idea why as it is working in every other form of test I have done.
+
+    Test the as_string functionality of Table.get_field_names.
+    The args are expected to be returned in a comma separated string.
+
+    :param create_table: pytest.fixture   
+        t: Type[Table] = Table("test_table", fields=[
+
+                ("arg1", "INTEGER"),
+                ("arg2", "REAL"),
+                ("arg3", "NULL"),
+                ("arg4", "TEXT"),
+                ("arg5", "BLOB")
+            ], db="./test.db")
+    :type create_table: pytest.fixtrue
+    """
     fields = create_table.get_field_names(as_string=True)
     #fields: str = create_table.get_field_names(as_string=True)
     assert type(fields) == str
