@@ -2,7 +2,7 @@
 Boatcomp
 ========
 
-|docs|
+|docs| |build|
 
 Boatcomp aims to provide high level racing insights to the average racer. 
 
@@ -80,3 +80,8 @@ dependencies i.e. the result of :code:`$ pip freeze` can be found in
     :alt: Documentation Status
     :scale: 100%
     :target: https://docs.readthedocs.io/en/latest/?badge=latest
+
+.. |build| image:: https://github.com/IainMcl/BoatComp/actions/workflows/boatcompbuild/badge.svg
+    :alt: Build Status
+    :scale: 100%
+    :target: https://github.com/IainMcl/BoatComp/actions/workflows/boatcompbuild/badge.svg
