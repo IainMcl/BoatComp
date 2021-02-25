@@ -81,7 +81,7 @@ dependencies i.e. the result of :code:`$ pip freeze` can be found in
     :scale: 100%
     :target: https://docs.readthedocs.io/en/latest/?badge=latest
 
-.. |build| image:: https://github.com/IainMcl/BoatComp/actions/workflows/boatcompbuild/badge.svg
+.. |build| image:: https://github.com/IainMcl/BoatComp/actions/workflows/boatcompbuild.yml/badge.svgg
     :alt: Build Status
     :scale: 100%
-    :target: https://github.com/IainMcl/BoatComp/actions/workflows/boatcompbuild/badge.svg
+    :target: https://github.com/IainMcl/BoatComp/actions/workflows/boatcompbuild.yml/badge.svgg
