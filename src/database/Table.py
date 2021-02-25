@@ -46,12 +46,13 @@ class Table():
         """
         self._table_name = table_name
         for field in fields:
-            field[1] = field[1].upper()
-            print(field[1])
-        self._fields = fields
+            if not field[1].isupper():
+                raise ValueError(
+                    f"Field types must be upper case. Raised on {field}.")
         if not fields:
             # Catch empty fields before trying to input to db
             raise ValueError(f"Fields can not be empty. Passed {fields}")
+        self._fields = fields
         self._db = db
 
         types: list[str] = [
