@@ -17,7 +17,7 @@ class Table():
     errors.
     """
 
-    def __init__(self, table_name: str, fields: list[tuple[str, str]], db: str = DB_PATH) -> None:
+    def __init__(self, table_name: str, fields: list[tuple[str, str]], db: str = DB_PATH, schema: Union[str, None] = None) -> None:
         """
         Create a table within a database 'db'.
 

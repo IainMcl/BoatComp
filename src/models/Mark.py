@@ -1,8 +1,6 @@
-from uuid import uuid4
+from database.Table import Table
 
 
-class Mark():
-    def __init__(self, position, type):
-        self.id = uuid4()
-        self.position = position
-        self.type = type
+class Mark(Table):
+    def __init__(self):
+        pass
